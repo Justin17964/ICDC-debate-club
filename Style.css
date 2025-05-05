@@ -4,27 +4,33 @@ html {
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: white;
+    background: #fefefe;
     color: #333;
 }
+
+/* Blue Header */
 header {
-    background-color: #0033cc;
+    background-color: #0044cc; /* blue */
     color: white;
     padding: 15px;
     text-align: center;
 }
+
 nav a {
     margin: 0 15px;
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
+
+/* Hero Section - Blue */
 .hero {
     padding: 60px 20px;
     text-align: center;
-    background: #0033cc;
+    background: #0044cc; /* blue */
     color: white;
 }
+
 .hero .button {
     display: inline-block;
     margin-top: 20px;
@@ -34,27 +40,35 @@ nav a {
     text-decoration: none;
     font-size: 16px;
 }
+
+/* About + Events - Yellow */
 section#about,
 section#events {
-    background: #ffcc00;
+    background: #ffcc00; /* yellow */
     color: black;
     padding: 40px 20px;
 }
+
+/* Register section - White */
 section#register {
     background: white;
     padding: 40px 20px;
 }
+
 form {
     max-width: 400px;
     margin: auto;
     display: flex;
     flex-direction: column;
 }
-form input, form button {
+
+form input,
+form button {
     margin: 10px 0;
     padding: 10px;
     font-size: 16px;
 }
+
 form button {
     background: red;
     color: white;
@@ -62,8 +76,10 @@ form button {
     cursor: pointer;
     font-weight: bold;
 }
+
+/* Footer - Blue */
 footer {
-    background: #0033cc;
+    background: #0044cc;
     color: white;
     text-align: center;
     padding: 15px;
