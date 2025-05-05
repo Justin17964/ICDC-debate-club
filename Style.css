@@ -1,5 +1,5 @@
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 body {
     font-family: Arial, sans-serif;
@@ -7,28 +7,24 @@ body {
     background: white;
     color: #333;
 }
-
 header {
-    background-color: #0033cc; /* deep blue */
+    background-color: #0033cc;
     color: white;
     padding: 15px;
     text-align: center;
 }
-
 nav a {
     margin: 0 15px;
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
-
 .hero {
     padding: 60px 20px;
     text-align: center;
     background: #0033cc;
     color: white;
 }
-
 .hero .button {
     display: inline-block;
     margin-top: 20px;
@@ -38,42 +34,27 @@ nav a {
     text-decoration: none;
     font-size: 16px;
 }
-
 section#about,
 section#events {
-    background: #ffcc00; /* yellow */
+    background: #ffcc00;
     color: black;
     padding: 40px 20px;
 }
-
 section#register {
     background: white;
     padding: 40px 20px;
 }
-
-section#events ul {
-    list-style: none;
-    padding: 0;
-}
-
-section#events li {
-    margin: 10px 0;
-}
-
 form {
     max-width: 400px;
     margin: auto;
     display: flex;
     flex-direction: column;
 }
-
-form input,
-form button {
+form input, form button {
     margin: 10px 0;
     padding: 10px;
     font-size: 16px;
 }
-
 form button {
     background: red;
     color: white;
@@ -81,7 +62,6 @@ form button {
     cursor: pointer;
     font-weight: bold;
 }
-
 footer {
     background: #0033cc;
     color: white;
