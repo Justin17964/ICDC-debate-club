@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: white;
+    color: #333;
+}
+
+header {
+    background-color: #0033cc; /* deep blue */
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    padding: 60px 20px;
+    text-align: center;
+    background: #0033cc;
+    color: white;
+}
+
+.hero .button {
+    display: inline-block;
+    margin-top: 20px;
+    background: red;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+section#about,
+section#events {
+    background: #ffcc00; /* yellow */
+    color: black;
+    padding: 40px 20px;
+}
+
+section#register {
+    background: white;
+    padding: 40px 20px;
+}
+
+section#events ul {
+    list-style: none;
+    padding: 0;
+}
+
+section#events li {
+    margin: 10px 0;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form input,
+form button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+form button {
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+footer {
+    background: #0033cc;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
