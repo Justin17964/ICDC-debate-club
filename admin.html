@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PCDC Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial; background: #fff8e1; padding: 20px; }
+    h1 { color: #0044cc; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #aaa; padding: 8px; text-align: left; }
+    th { background: #ffcc00; }
+    tr:nth-child(even) { background: #f9f9f9; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <h1>PCDC Registration Admin Panel</h1>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>School</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    firebase.database().ref("registrations").on("value", snapshot => {
+      tableBody.innerHTML = ""; // Clear table
+      snapshot.forEach(child => {
+        const data = child.val();
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = data.name;
+
+        const emailCell = document.createElement("td");
+        emailCell.textContent = data.email;
+
+        const schoolCell = document.createElement("td");
+        schoolCell.textContent = data.school;
+
+        const timeCell = document.createElement("td");
+        const date = new Date(data.timestamp);
+        timeCell.textContent = date.toLocaleString();
+
+        row.appendChild(nameCell);
+        row.appendChild(emailCell);
+        row.appendChild(schoolCell);
+        row.appendChild(timeCell);
+
+        tableBody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>
