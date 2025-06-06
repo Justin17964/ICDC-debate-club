@@ -1,58 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>PCDC - National Debate Platform</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <meta charset="UTF-8">
+  <title>ICDC Debate Site</title>
+  <style>
+    /* Full-page background image */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    #google-login {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4285F4;
+      color: white;
+      cursor: pointer;
+    }
+
+    #google-login:hover {
+      background-color: #3367D6;
+    }
+
+    #user-info {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>PCDC Debate League</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#events">Events</a>
-            <a href="#register">Register</a>
-        </nav>
-    </header>
+  <h1>Welcome to ICDC Debate Site</h1>
+  <button id="google-login">Login with Google</button>
+  <div id="user-info"></div>
 
-    <section class="hero">
-        <h2>Empowering Voices. Shaping Futures.</h2>
-        <p>The national debate league platform for students who think boldly.</p>
-        <a class="button" href="#register">Join Now</a>
-    </section>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    <section id="about">
-        <h2>About PCDC</h2>
-        <p>PCDC is a national English-language debate league where students engage in critical thinking, argumentation, and global issue analysis.</p>
-    </section>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8PgqBk77scFWCP0CbAkK__01Dp6tr4Vg",
+      authDomain: "icdc-fca25.firebaseapp.com",
+      projectId: "icdc-fca25",
+      storageBucket: "icdc-fca25.appspot.com",
+      messagingSenderId: "398496199141",
+      appId: "1:398496199141:web:afbde0dcc0eb3e714abf0c",
+      measurementId: "G-W1YL50VBF9"
+    };
 
-    <section id="events">
-        <h2>Upcoming Events</h2>
-        <ul>
-            <li><strong>May 18–19:</strong> National Qualifiers – Beijing</li>
-            <li><strong>June 2–3:</strong> South China Open – Guangzhou</li>
-            <li><strong>June 16–17:</strong> Online Invitational</li>
-        </ul>
-    </section>
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
 
-    <section id="register">
-        <h2>Register Now</h2>
-        <form id="registerForm">
-            <input type="text" id="name" placeholder="Your Full Name" required />
-            <input type="email" id="email" placeholder="Email Address" required />
-            <input type="text" id="school" placeholder="School Name" />
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    document.getElementById("google-login").addEventListener("click", async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
 
-    <footer>
-        <p>© 2025 PCDC Debate League | All rights reserved.</p>
-    </footer>
+        document.getElementById("user-info").innerText = `Hello, ${user.displayName}!`;
 
-    <script src="firebase-config.js"></script>
-    <script src="register.js"></script>
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName,
+          email: user.email,
+          loginTime: new Date().toISOString()
+        });
+
+        console.log("User saved to Firestore.");
+      } catch (error) {
+        console.error("Login failed:", error.message);
+      }
+    });
+  </script>
 </body>
 </html>
